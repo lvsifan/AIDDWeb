@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* PharmaAIDD dark theme — defaults match the design */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+    --card: 222 41% 9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 41% 9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 222 30% 14%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+    --success: 142 71% 45%;
+    --success-foreground: 210 40% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 222 47% 6%;
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 217 91% 60%;
+    --radius: 0.625rem;
+    --sidebar-background: 222 47% 5%;
+    --sidebar-foreground: 215 20% 75%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 222 41% 11%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 222 30% 14%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  html, body, #root {
+    height: 100%;
+  }
+}
+
+@layer components {
+  /* PharmaAIDD — primary gradient (blue → purple) */
+  .gradient-primary {
+    background-image: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(262 83% 58%) 100%);
+  }
+  .gradient-primary-soft {
+    background-image: linear-gradient(135deg, hsl(217 91% 60% / 0.15) 0%, hsl(262 83% 58% / 0.15) 100%);
+  }
+  .gradient-text {
+    background-image: linear-gradient(135deg, hsl(217 91% 70%) 0%, hsl(262 83% 70%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Card / panel with subtle border */
+  .surface-card {
+    @apply bg-card border border-border/60 rounded-xl;
+  }
+  .surface-panel {
+    @apply bg-card/60 border border-border/60 rounded-xl;
+  }
+
+  /* Status pills */
+  .pill-active {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium;
+    background: hsl(142 71% 45% / 0.15);
+    color: hsl(142 71% 60%);
+  }
+  .pill-pending {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium;
+    background: hsl(38 92% 50% / 0.15);
+    color: hsl(38 92% 60%);
+  }
+  .pill-running {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium;
+    background: hsl(217 91% 60% / 0.18);
+    color: hsl(217 91% 70%);
+  }
+  .pill-completed {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium;
+    background: hsl(262 83% 58% / 0.18);
+    color: hsl(262 83% 75%);
+  }
+  .pill-failed {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium;
+    background: hsl(0 72% 51% / 0.18);
+    color: hsl(0 72% 65%);
+  }
+
+  /* Live dot animation */
+  .live-dot {
+    @apply inline-block w-1.5 h-1.5 rounded-full;
+    background: hsl(142 71% 45%);
+    box-shadow: 0 0 0 0 hsl(142 71% 45% / 0.7);
+    animation: live-pulse 1.6s ease-out infinite;
+  }
+  @keyframes live-pulse {
+    0% { box-shadow: 0 0 0 0 hsl(142 71% 45% / 0.7); }
+    70% { box-shadow: 0 0 0 8px hsl(142 71% 45% / 0); }
+    100% { box-shadow: 0 0 0 0 hsl(142 71% 45% / 0); }
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: hsl(222 30% 22%);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: hsl(222 30% 30%); }

@@ -1,0 +1,27 @@
+# Dependencies
+app/node_modules/
+node_modules/
+
+# Build output
+app/dist/
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# WorkBuddy local data (not part of the website)
+.workbuddy/
