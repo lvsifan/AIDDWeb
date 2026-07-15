@@ -1,15 +1,8 @@
 import { Search, Bell, HelpCircle, Menu, Settings } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import { Logo } from '@/components/Logo';
 
 type HeaderProps = {
@@ -17,6 +10,7 @@ type HeaderProps = {
 };
 
 export function Header({ onMenuClick }: HeaderProps) {
+  const navigate = useNavigate();
   return (
     <header className="h-16 flex items-center gap-4 border-b border-border/60 bg-background/80 backdrop-blur px-4 md:px-6">
       {/* Mobile menu */}
@@ -53,43 +47,24 @@ export function Header({ onMenuClick }: HeaderProps) {
 
       {/* Actions */}
       <div className="flex items-center gap-1.5">
-        <Button variant="ghost" size="icon" aria-label="Help">
+        <Button variant="ghost" size="icon" aria-label="Help" onClick={() => navigate('/docs')}>
           <HelpCircle className="h-4.5 w-4.5" />
         </Button>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
-              <Bell className="h-4.5 w-4.5" />
-              <Badge className="absolute -top-0.5 -right-0.5 h-4 min-w-4 px-1 text-[10px] flex items-center justify-center gradient-primary text-white border-0">
-                2
-              </Badge>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-80">
-            <DropdownMenuLabel className="flex items-center justify-between">
-              <span>Notifications</span>
-              <span className="text-[10px] text-muted-foreground font-normal">2 new</span>
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="flex flex-col items-start gap-0.5 py-2.5">
-              <div className="text-[13px] font-medium">Job #989234 is running</div>
-              <div className="text-[11px] text-muted-foreground">Docking_Batch_0427 — 72% complete</div>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="flex flex-col items-start gap-0.5 py-2.5">
-              <div className="text-[13px] font-medium">New API key issued</div>
-              <div className="text-[11px] text-muted-foreground">For Li Wei (EMP-10008)</div>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <Button variant="ghost" size="icon" className="relative" aria-label="Notifications" onClick={() => navigate('/notifications')}>
+          <Bell className="h-4.5 w-4.5" />
+          <Badge className="absolute -top-0.5 -right-0.5 h-4 min-w-4 px-1 text-[10px] flex items-center justify-center gradient-primary text-white border-0">
+            3
+          </Badge>
+        </Button>
 
-        <Button variant="ghost" size="icon" aria-label="Settings">
+        <Button variant="ghost" size="icon" aria-label="Settings" onClick={() => navigate('/settings')}>
           <Settings className="h-4.5 w-4.5" />
         </Button>
 
         <div className="h-8 w-px bg-border/60 mx-1" />
 
-        <button className="flex items-center gap-2.5 pl-1 pr-2 py-1 rounded-md hover:bg-secondary/60 transition-colors">
+        <Link to="/settings" className="flex items-center gap-2.5 pl-1 pr-2 py-1 rounded-md hover:bg-secondary/60 transition-colors">
           <div className="h-8 w-8 rounded-full gradient-primary flex items-center justify-center text-white text-xs font-semibold">
             AS
           </div>
@@ -97,7 +72,7 @@ export function Header({ onMenuClick }: HeaderProps) {
             <span className="text-[13px] font-medium">Alex Smith</span>
             <span className="text-[10px] text-muted-foreground">Admin</span>
           </div>
-        </button>
+        </Link>
       </div>
     </header>
   );
