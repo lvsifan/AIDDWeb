@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Search, Plus, Filter, FileText, Download, MoreVertical, Loader2, CheckCircle2, Edit } from 'lucide-react';
 import { PageHeader } from '@/components/PageHeader';
 import { Button } from '@/components/ui/button';
@@ -20,6 +21,17 @@ const statusIcon: Record<string, React.ComponentType<{ className?: string }>> = 
 };
 
 export default function ReportsPage() {
+  const [search, setSearch] = useState('');
+
+  const filtered = search
+    ? reports.filter((r) =>
+        r.title.toLowerCase().includes(search.toLowerCase()) ||
+        r.relatedTo.toLowerCase().includes(search.toLowerCase()) ||
+        r.project.toLowerCase().includes(search.toLowerCase()) ||
+        r.createdBy.toLowerCase().includes(search.toLowerCase()),
+      )
+    : reports;
+
   return (
     <>
       <PageHeader
@@ -35,7 +47,12 @@ export default function ReportsPage() {
       <div className="flex items-center gap-3 mb-4">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
-          <Input placeholder="Search reports..." className="pl-9 h-9 bg-secondary/30" />
+          <Input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search reports..."
+            className="pl-9 h-9 bg-secondary/30"
+          />
         </div>
         <Button variant="outline" size="sm">
           <Filter className="h-3.5 w-3.5" /> Filters
@@ -43,7 +60,7 @@ export default function ReportsPage() {
       </div>
 
       <div className="space-y-2.5">
-        {reports.map((r) => {
+        {filtered.map((r) => {
           const StatusIcon = statusIcon[r.status];
           return (
             <div key={r.id} className="surface-card p-3.5 flex items-center gap-3 hover:border-primary/30 transition-colors">

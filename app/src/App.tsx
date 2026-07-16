@@ -18,8 +18,7 @@ import ClusterPage     from '@/pages/ClusterPage';
 import ReportsPage     from '@/pages/ReportsPage';
 import AIPage          from '@/pages/AIPage';
 import DocsPage        from '@/pages/DocsPage';
-import { PlaceholderPage } from '@/pages/PlaceholderPage';
-import { Key } from 'lucide-react';
+import ApiKeysPage     from '@/pages/ApiKeysPage';
 import './App.css';
 
 function App() {
@@ -39,7 +38,7 @@ function App() {
           <Route path="/ai"        element={<AIPage />} />
           <Route path="/users"     element={<UserManagement />} />
           <Route path="/team"      element={<TeamPage />} />
-          <Route path="/apikeys"   element={<PlaceholderPage title="API Keys" description="Issue and manage programmatic API access keys." icon={Key} />} />
+          <Route path="/apikeys"   element={<ApiKeysPage />} />
           <Route path="/admin"     element={<AdminPage />} />
           <Route path="/cluster"   element={<ClusterPage />} />
           <Route path="/audit"     element={<AuditLogsPage />} />
