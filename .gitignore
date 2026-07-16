@@ -25,3 +25,6 @@ Thumbs.db
 
 # WorkBuddy local data (not part of the website)
 .workbuddy/
+
+# FlexFit tool (separate repo, deployed independently on server)
+FlexFit/

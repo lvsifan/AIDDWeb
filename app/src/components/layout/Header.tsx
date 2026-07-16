@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Logo } from '@/components/Logo';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 type HeaderProps = {
   onMenuClick?: () => void;
@@ -47,6 +48,8 @@ export function Header({ onMenuClick }: HeaderProps) {
 
       {/* Actions */}
       <div className="flex items-center gap-1.5">
+        <ThemeToggle />
+
         <Button variant="ghost" size="icon" aria-label="Help" onClick={() => navigate('/docs')}>
           <HelpCircle className="h-4.5 w-4.5" />
         </Button>
